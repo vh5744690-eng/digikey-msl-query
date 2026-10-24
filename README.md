@@ -2,6 +2,10 @@
 
 > 一个纯前端的 DigiKey 湿敏等级（MSL）批量查询工具。浏览器直接调用 DigiKey 官方 API，无需后端服务，密钥只存放在你自己的浏览器里。
 
+**在线使用 → <https://vh5744690-eng.github.io/digikey-msl-query/>**
+
+填入自己的 DigiKey 密钥即可使用，无需安装任何东西。密钥只保存在本机浏览器，不会上传到任何服务器。
+
 ![首页](docs/screenshot/home.png)
 
 ---
@@ -128,11 +132,15 @@ DigiKey 的 OAuth 与搜索端点都返回了 CORS 响应头（`Access-Control-A
 
 ### 2. 打开工具
 
-**方式一：直接双击**
+**方式一：直接访问在线版（最省事）**
+
+<https://vh5744690-eng.github.io/digikey-msl-query/>
+
+**方式二：本地双击**
 
 下载仓库后双击 `docs/index.html`。首次打开会自动弹出设置窗。
 
-**方式二：本地起静态服务（推荐）**
+**方式三：本地起静态服务**
 
 ```bash
 python -m http.server 8811 --directory docs
@@ -174,6 +182,21 @@ python -m http.server 8811 --directory docs
    换域名、换浏览器、清除浏览器数据后，密钥与计数都需要重来。
 
 ---
+
+## 目录结构
+
+```
+docs/                    ← 整个站点，GitHub Pages 的发布目录
+├── index.html           页面结构
+├── assets/
+│   ├── styles.css       样式与设计 token
+│   ├── digikey.js       API 客户端、MSL 提取与品牌匹配（核心逻辑）
+│   └── app.js           界面交互、批量导入与导出
+├── vendor/
+│   └── xlsx.full.min.js SheetJS（已本地化，不依赖 CDN）
+├── screenshot/          文档用截图
+└── .nojekyll            让 GitHub Pages 跳过 Jekyll
+```
 
 ## 许可
 
